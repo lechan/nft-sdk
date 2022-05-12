@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>nft demo</title>
+</head>
+
+<body style="padding: 0 20px">
+  <h1>nft demo</h1>
+  <script type="module" src="../dist/nft-sdk.es5.js"></script>
+  <script>
+    window.NftSdk && window.NftSdk.getNftDetailInfo(6, (data) => {
+      console.log(data)
+    }, (msg) => {
+      console.log(msg)
+    })
+  </script>
+</body>
+
+</html>

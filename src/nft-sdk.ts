@@ -16,3 +16,5 @@ export default class NftSdk {
     }
   }
 }
+
+(window as any).NftSdk = NftSdk
