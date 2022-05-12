@@ -4,6 +4,7 @@ import sourceMaps from 'rollup-plugin-sourcemaps'
 import camelCase from 'lodash.camelcase'
 import typescript from 'rollup-plugin-typescript2'
 import json from 'rollup-plugin-json'
+import { terser } from 'rollup-plugin-terser'
 
 const pkg = require('./package.json')
 
@@ -24,7 +25,11 @@ export default {
     // Allow json resolution
     json(),
     // Compile TypeScript files
-    typescript({ useTsconfigDeclarationDir: true }),
+    typescript({
+      useTsconfigDeclarationDir: true,
+      typescript: require('typescript'),
+      objectHashIgnoreUnknownHack: true,
+    }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
     // Allow node_modules resolution, so you can use 'external' to control
@@ -34,5 +39,7 @@ export default {
 
     // Resolve source maps to the original source
     sourceMaps(),
+    // 压缩
+    terser(),
   ],
 }
