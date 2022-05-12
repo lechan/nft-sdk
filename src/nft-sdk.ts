@@ -1,11 +1,18 @@
+import { NftService } from './api'
 export default class NftSdk {
   /**
-   * return sum
+   * 通过id获取NFT详情信息
    * @static
-   * @param {number} a 
-   * @param {number} a 
+   * @param {number} id 
+   * @param {function} success
+   * @param {function} error
    */
-  static add(a: number, b: number): number {
-    return a+b
+  static async getNftDetailInfo(id: number, success?: Function, error?: Function) {
+    const { code, data, msg } = await NftService.getNftDetail(id)
+    if (code === 0) {
+      success && success(data)
+    } else {
+      error && error(msg)
+    }
   }
 }

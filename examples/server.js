@@ -1,4 +1,5 @@
 const express = require('express')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
@@ -19,7 +20,12 @@ app.use(webpackHotMiddleware(compiler))
 
 app.use(express.static(__dirname))
 
-const port = process.env.PORT || 9090
+app.use('/museum', createProxyMiddleware({
+  target: 'http://172.20.92.99:20018',
+  changeOrigin: true
+}))
+
+const port = process.env.PORT || 8080
 module.exports = app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}, Ctrl+C to stop`)
 })

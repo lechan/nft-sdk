@@ -1,5 +1,8 @@
 // @ts-nocheck
-import TsSdk from '../../src/index.ts'
+import NftSdk from '../../src/nft-sdk.ts'
 
-const addResult = TsSdk.add(1, 2)
-document.querySelector('.result').innerText = addResult
+NftSdk.getNftDetailInfo(6, (data) => {
+  console.log(data)
+}, (msg) => {
+  console.log(msg)
+})

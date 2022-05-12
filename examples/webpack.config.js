@@ -60,5 +60,14 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
-  ]
+  ],
+  // devServer: {
+  //   proxy: {
+  //     '/museum': {
+  //       target: 'http://172.20.92.99:20018',
+  //       changeOrigin: true,     // target是域名的话，需要这个参数，
+  //       secure: false,          // 设置支持https协议的代理
+  //     },
+  //   }
+  // },
 }
